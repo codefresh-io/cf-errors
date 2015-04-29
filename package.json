@@ -1,0 +1,17 @@
+{
+  "name": "cf-errors",
+  "version": "0.0.1",
+  "description": "codefresh errors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codefresh/cf-errors.git"
+  },
+  "keywords": [
+    "cf-api"
+  ],
+  "dependencies": {
+    "verror": "^1.6.0"
+  },
+  "devDependencies": {
+  }
+}
