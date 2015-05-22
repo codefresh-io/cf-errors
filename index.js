@@ -4,6 +4,7 @@ var util 		= require('util');
 var errorTypes = {
 	'UnauthorizedError': 'UnauthorizedError',
 	'ForbiddenError': 'ForbiddenError',
+	'NotFoundError': 'NotFoundError',
 	'RangeError': 'RangeError',
 	'TypeError': 'TypeError',
 	'BadRequestError': 'BadRequestError',
@@ -11,6 +12,19 @@ var errorTypes = {
 	'WrongInputError': 'WrongInputError',
 	'Error': 'Error',
 	'WError': 'WError'
+};
+
+var errorCodes = {
+	'UnauthorizedError': 401,
+	'ForbiddenError': 403,
+	'NotFoundError': 404,
+	'RangeError': 400,
+	'TypeError': 400,
+	'BadRequestError': 400,
+	'ServiceUnavailableError': 500,
+	'WrongInputError': 400,
+	'Error': 400,
+	'WError': 400
 };
 
 var CFError = function(errorType, cause, message) {
@@ -28,6 +42,10 @@ var CFError = function(errorType, cause, message) {
 
 	WError.call(this, cause, message);
 	this.name = errorType;
+};
+
+CFError.prototype.getStatusCode = function(){
+	return errorCodes[this.name];
 };
 
 util.inherits(CFError, WError);
