@@ -44,11 +44,12 @@ var CFError = function(errorType, cause, message) {
 	this.name = errorType;
 };
 
+
+util.inherits(CFError, WError);
+
 CFError.prototype.getStatusCode = function(){
 	return errorCodes[this.name];
 };
-
-util.inherits(CFError, WError);
 
 
 module.exports = CFError;
