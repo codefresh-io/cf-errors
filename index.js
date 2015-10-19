@@ -6,6 +6,7 @@ var errorTypes = {
 	'ForbiddenError': 'ForbiddenError',
 	'NotFoundError': 'NotFoundError',
 	'RangeError': 'RangeError',
+	'ValidationError': 'ValidationError',
 	'TypeError': 'TypeError',
 	'BadRequestError': 'BadRequestError',
 	'ServiceUnavailableError': 'ServiceUnavailableError',
@@ -19,6 +20,7 @@ var errorCodes = {
 	'ForbiddenError': 403,
 	'NotFoundError': 404,
 	'RangeError': 400,
+	'ValidationError': 400,
 	'TypeError': 400,
 	'BadRequestError': 400,
 	'ServiceUnavailableError': 500,
@@ -43,6 +45,28 @@ var CFError = function(errorType, cause, message) {
 	WError.call(this, cause, message);
 	this.name = errorType;
 };
+
+var printStack = function printStack(err, stacks){
+	if (!stacks){
+		stacks = [];
+	}
+
+	stacks.push(err.stack);
+	if (err.we_cause){
+		return printStack(err.we_cause, stacks);
+	}
+	else {
+		var res = "";
+		var caused = '\ncaused by ';
+		stacks.map(function(stack, index){
+			if (index){
+				res += caused;
+			}
+			res += stack;
+		});
+		return res;
+	}
+}
 
 
 util.inherits(CFError, WError);
