@@ -29,7 +29,7 @@ var errorCodes = {
 	'WError': 400
 };
 
-var CFError = function(errorType, cause, message) {
+var CFError = function CFError(errorType, cause, message) {
 	if (errorType) {
 		if (typeof errorType === "string" && !errorTypes[errorType]){
 			throw new WError(errorTypes.WrongInput, 'The error type is incorrect');
