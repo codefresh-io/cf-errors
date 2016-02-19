@@ -54,7 +54,7 @@ class CFError extends WError {
 
 				return (str);
 			},
-			set: function(value) { this._stack = value; }
+			set: function(value) { this._stack = value.replace("Error", this.name); }
 		});
 
 		this.stack = new Error(this.message).stack;
