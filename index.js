@@ -1,7 +1,72 @@
-var WError 	  	= require('verror').WError;
-var util 		= require('util');
+'use strict';
 
-var errorTypes = {
+var WError = require('verror').WError;
+
+class CFError extends WError {
+	constructor(errorType, cause, errorMsg) {
+		var args = Array.prototype.slice.call(arguments);
+		var errorType = args.shift();
+		if (errorType) {
+			if (typeof errorType === "string" && !CFError.errorTypes[errorType]) {
+				throw new WError(CFError.errorTypes.WrongInputError, 'The error type is incorrect');
+			}
+			else if (typeof errorType !== "string") {
+				throw new WError(CFError.errorTypes.WrongInputError, 'The error type is missing');
+			}
+		}
+		else {
+			throw new WError(CFError.errorTypes.WrongInputError, 'The error type is missing');
+		}
+		var str = "";
+		var index = 0;
+		var count = args.length;
+
+		//TODO replace with super(...args); when moving to node v5+
+		//TODO eval is a workaround which is bad because malicious code can be inserted here
+		for (; index < count; ++index)
+			str += "args[" + index + "]" + (index < count - 1 ? ", " : "");
+		eval("super(" + str +")");
+
+		if (errorType === CFError.errorTypes.Inherit){
+			if (this.we_cause && this.we_cause.name){
+				errorType = this.we_cause.name;
+			}
+			else {
+				errorType = CFError.errorTypes.Error;
+			}
+		}
+		this.name = errorType;
+		Object.defineProperty(this, 'stack', {
+			get: function() {
+				var str = "";
+				if (this._stack) {
+					str = this._stack;
+				}
+				else if (this.message) {
+					str = (this.hasOwnProperty('name') && this.name ||
+					this.constructor.name || this.constructor.prototype.name);
+					str += ': ' + this.message;
+				}
+
+				if (this.we_cause && this.we_cause.message) {
+					str += '\nCaused by ' + this.we_cause.stack;
+				}
+
+				return (str);
+			},
+			set: function(value) { this._stack = value; }
+		});
+
+		this.stack = new Error(this.message).stack;
+	}
+
+	getStatusCode() {
+		return CFError.errorCodes[this.name];
+	}
+
+}
+
+CFError.errorTypes = {
 	'UnauthorizedError': 'UnauthorizedError',
 	'ForbiddenError': 'ForbiddenError',
 	'NotFoundError': 'NotFoundError',
@@ -12,10 +77,10 @@ var errorTypes = {
 	'ServiceUnavailableError': 'ServiceUnavailableError',
 	'WrongInputError': 'WrongInputError',
 	'Error': 'Error',
-	'WError': 'WError'
+	'Inherit': 'Inherit'
 };
 
-var errorCodes = {
+CFError.errorCodes = {
 	'UnauthorizedError': 401,
 	'ForbiddenError': 403,
 	'NotFoundError': 404,
@@ -26,63 +91,7 @@ var errorCodes = {
 	'ServiceUnavailableError': 500,
 	'WrongInputError': 400,
 	'Error': 400,
-	'WError': 400
+	'Inherit': 400
 };
-
-var CFError = function CFError(errorType, cause, message) {
-	if (errorType) {
-		if (typeof errorType === "string" && !errorTypes[errorType]){
-			throw new WError(errorTypes.WrongInput, 'The error type is incorrect');
-		}
-		else if (typeof errorType !== "string") {
-			throw new WError(errorTypes.WrongInput, 'The error type is missing');
-		}
-	}
-	else {
-		throw new WError(errorTypes.WrongInput, 'The error type is missing');
-	}
-
-	WError.call(this, cause, message);
-	this.name = errorType;
-};
-
-var printStack = function printStack(err, stacks){
-	if (!stacks){
-		stacks = [];
-	}
-
-	stacks.push(err.stack);
-	if (err.we_cause){
-		return printStack(err.we_cause, stacks);
-	}
-	else {
-		var res = "";
-		var caused = '\ncaused by ';
-		stacks.map(function(stack, index){
-			if (index){
-				res += caused;
-			}
-			res += stack;
-		});
-		return res;
-	}
-}
-
-
-util.inherits(CFError, WError);
-
-CFError.prototype.getStatusCode = function(){
-	return errorCodes[this.name];
-};
-
 
 module.exports = CFError;
-module.exports.errorTypes = errorTypes;
-
-
-
-
-
-
-
-
