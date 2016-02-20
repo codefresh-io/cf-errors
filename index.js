@@ -54,10 +54,19 @@ class CFError extends WError {
 
 				return (str);
 			},
-			set: function(value) { this._stack = value.replace("Error", this.name); }
+			set: function(value) {
+				if (!this.stackErrorSet){
+					this._stack = value.replace("Error", this.name);
+				}
+				else {
+					this._stack = value;
+				}
+			}
 		});
 
+		this.stackErrorSet = false;
 		this.stack = new Error(this.message).stack;
+		this.stackErrorSet = true;
 	}
 
 	getStatusCode() {
