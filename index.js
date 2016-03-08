@@ -86,7 +86,8 @@ CFError.errorTypes = {
 	'ServiceUnavailableError': 'ServiceUnavailableError',
 	'WrongInputError': 'WrongInputError',
 	'Error': 'Error',
-	'Inherit': 'Inherit'
+	'Inherit': 'Inherit',
+	'DuplicateError': 'DuplicateError'
 };
 
 CFError.errorCodes = {
