@@ -87,7 +87,8 @@ CFError.errorTypes = {
 	'WrongInputError': 'WrongInputError',
 	'Error': 'Error',
 	'Inherit': 'Inherit',
-	'DuplicateError': 'DuplicateError'
+	'DuplicateError': 'DuplicateError',
+	'NotImplemented': 'NotImplemented'
 };
 
 CFError.errorCodes = {
