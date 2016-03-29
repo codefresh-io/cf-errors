@@ -40,7 +40,7 @@ class CFHttpErrorForbidden extends CFHttpError {
 - Logger should support appender types. For example, `Console`, `File`, etc.
 _ Logger should should support appender and filters configurations.
 # Usage Example:
-```
+``` javascript
 // logger.json
 {
   "appenders": [
