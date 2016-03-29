@@ -32,9 +32,57 @@ class RangeError extends CFHttpError {
     }
 }
 
+class ValidationError extends CFHttpError {
+    constructor(options) {
+        super(options, 400);
+    }
+}
+
+class TypeError extends CFHttpError {
+    constructor(options) {
+        super(options, 400);
+    }
+}
+
+class BadRequestError extends CFHttpError {
+    constructor(options) {
+        super(options, 400);
+    }
+}
+
+class ServiceUnavailableError extends CFHttpError {
+    constructor(options) {
+        super(options, 500);
+    }
+}
+
+class WrongInputError extends CFHttpError {
+    constructor(options) {
+        super(options, 400);
+    }
+}
+
+class Error extends CFHttpError {
+    constructor(options) {
+        super(options, 400);
+    }
+}
+
+class Inherit extends CFHttpError {
+    constructor(options) {
+        super(options, 400);
+    }
+}
 module.exports = {
     UnauthorizedError,
     ForbiddenError,
     NotFoundError,
-    RangeError
+    RangeError,
+    ValidationError,
+    TypeError,
+    BadRequestError,
+    ServiceUnavailableError,
+    WrongInputError,
+    Error,
+    Inherit
 };
