@@ -6,15 +6,23 @@
 ### example
 
 ```javascript
-// Some HTTP module defines its error types by inheriting from CFError
+// Some HTTP module defines its thrown error types.
+// Error types should be inherited from CFError.
 class CFHttpError extends CFError {
-    constructor(options, httpErrorCode) {
+    constructor(options, errorCode) {
         super(options);
-        this.httpErrorCode = httpErrorCode;
+
+        // define http error code
+        this.errorCode = errorCode;
     }
 }
 
-
+// Define HTTP Forbidden (403) error
+class CFHttpErrorForbidden extends CFHttpError {
+    constructor(options) {
+        super(options, 403);
+    }
+}
 ```
 
 ## Error Propagation
