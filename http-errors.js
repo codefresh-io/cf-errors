@@ -6,6 +6,11 @@ class CFHttpError extends CFError {
         super(options);
         this.httpErrorCode = httpErrorCode;
     }
+
+    toString() {
+        return super.toString();
+    }
+
 }
 
 class UnauthorizedError extends CFHttpError {

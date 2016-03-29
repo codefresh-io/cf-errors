@@ -1,13 +1,13 @@
 # Codefresh Unified Error Modeling (draft 1)
 ## CFError
 - CFError should be the base class for all error types.
-- Each module should define it’s possible thrown errors by inheriting from CFError (and optionally, add additional relevant members) for each error type. For example,
+- CFError itself should inherit from VError.
+- Each module should define it’s possible thrown errors by inheriting from CFError, optionally adding additional relevant members, for each error type.
 
-### example
-
+# Usage Example:
 ```javascript
-// Some HTTP module defines its thrown error types.
-// Error types should be inherited from CFError.
+// some http api module defines its thrown error types.
+// error types should be inherited from CFError.
 class CFHttpError extends CFError {
     constructor(options, errorCode) {
         super(options);
@@ -17,18 +17,51 @@ class CFHttpError extends CFError {
     }
 }
 
-// Define HTTP Forbidden (403) error
+// define the Http Unauthorize (401) error
+class CFHttpUnauthorizedError extends CFHttpError {
+    constructor(options) {
+        super(options, 401);
+    }
+}
+
+// define the Http Forbidden (403) error
 class CFHttpErrorForbidden extends CFHttpError {
     constructor(options) {
         super(options, 403);
     }
 }
+
+...
 ```
 
-## Error Propagation
-Using promises
+## Logger
+- Logger should define severity level (`verbose, debug, info, warning, and error`).
+- Logger should define logger categories. For example, `Github`, `Builder`, etc.
+- Logger should support appender types. For example, `Console`, `File`, etc.
+_ Logger should should support appender and filters configurations.
+# Usage Example:
+```
+// logger.json
+{
+  "appenders": [
+    {
+      "type": "categoryFilter",
+      "exclude": [
+        "Builder"
+      ],
+      "appender": {
+        "type": "console"
+      }
+    }
+  ]
+}
 
-## Logging
-Separate logger categories for each purpose
-Route logger output based on category/severity
-Global error handler
+...
+
+// builder-task.js
+const logger = require("logger").getLogger("Builder");
+logger.info("Build started. task %s", taskID);
+...
+logger.warning(...);
+
+```

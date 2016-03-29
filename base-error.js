@@ -1,7 +1,7 @@
 "use strict";
-const WError = require("verror").WError;
+const VError = require("verror");
 
-class CFError extends WError {
+class CFError extends VError {
 
 }
 
