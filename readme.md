@@ -1,37 +1,65 @@
-# Codefresh Unified Error Modeling (draft 1)
-## CFError
-- CFError should be the base class for all error types.
-- CFError itself should inherit from VError.
-- Each module should define it’s possible thrown errors by inheriting from CFError, optionally adding additional relevant members, for each error type.
+# Codefresh Unified Error Modeling (draft 2)
+## JavaScript/Node CFError
+Inside JavaScript/Node all errors should be reported as an error specific class derived from CFError. CFError itself should inherit from VError.
 
-# Usage Example:
+Each module should define it’s possible thrown errors by inheriting from CFError, optionally adding additional relevant members, for each error type.
+
+### Usage Example:
 ```javascript
-// some http api module defines its thrown error types.
-// error types should be inherited from CFError.
-class CFHttpError extends CFError {
-    constructor(options, errorCode) {
+// Define User Not Found error.
+class CFUserNotFoundError extends CFError {
+
+}
+
+// Define User Already Exists error
+class CFUserAlreadyExistsError extends CFError {
+    constructor(options, existingUserID) {
         super(options);
-
-        // define http error code
-        this.errorCode = errorCode;
+        this.existingUserID = existingUserID;
     }
 }
+```
+# REST Response Errors
+Guidelines and best practice taken from
 
-// define the Http Unauthorize (401) error
-class CFHttpUnauthorizedError extends CFHttpError {
-    constructor(options) {
-        super(options, 401);
+## HTTP Response Code
+Success responses should be of the HTTP 2xx response code. Examples:
+```
+HTTP/1.1 200 OK
+HTTP/1.1 201 Created
+```
+Client requests error responses should be of the HTTP 4xx client error codes. Examples:
+```
+HTTP/1.1 403 Forbidden
+HTTP/1.1 404 Not Found
+```
+Server error responses should of the HTTP 5xx server error codes. Examples:
+```
+HTTP/1.1 500 Internal Server Error
+```
+## HTTP Error Response Body
+For 4xx and 5xx response codes, the response body should contains the error description:
+```
+HTTP/1.1 400 Internal Server Error
+{
+    {
+        "code": <error code>
+        "message": <error description>
     }
 }
-
-// define the Http Forbidden (403) error
-class CFHttpErrorForbidden extends CFHttpError {
-    constructor(options) {
-        super(options, 403);
-    }
+```
+It is also possible to return a list of errors, for example:
+```
+HTTP/1.1 500 Internal Server Error
+{
+    errors: [
+        {
+            "code": <error code>
+            "message": <error description>
+        },
+        ...
+    ]
 }
-
-...
 ```
 
 ## Logger
