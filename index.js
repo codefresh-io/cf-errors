@@ -88,7 +88,8 @@ CFError.errorTypes = {
 	'Error': 'Error',
 	'Inherit': 'Inherit',
 	'DuplicateError': 'DuplicateError',
-	'NotImplemented': 'NotImplemented'
+	'NotImplemented': 'NotImplemented',
+	'WrongRepoPermission': 'WrongRepoPermission'
 };
 
 CFError.errorCodes = {
