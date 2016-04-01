@@ -1,6 +1,11 @@
 'use strict';
 
-var WError = require('verror').WError;
+var WError             = require('verror').WError;
+
+//override extsprintf sprintf with node.js util format for standard beheaviour of node which is different in sprintf
+var mod_extsprintf     = require('extsprintf');
+var util               = require('util');
+mod_extsprintf.sprintf = util.format;
 
 class CFError extends WError {
 	constructor(errorType, cause, errorMsg) {
