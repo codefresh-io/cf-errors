@@ -89,7 +89,8 @@ CFError.errorTypes = {
 	'Inherit': 'Inherit',
 	'DuplicateError': 'DuplicateError',
 	'NotImplemented': 'NotImplemented',
-	'WrongRepoPermission': 'WrongRepoPermission'
+	'WrongRepoPermission': 'WrongRepoPermission',
+	'FeatureDisabled': 'FeatureDisabled'
 };
 
 CFError.errorCodes = {
