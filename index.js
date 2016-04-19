@@ -90,7 +90,8 @@ CFError.errorTypes = {
 	'DuplicateError': 'DuplicateError',
 	'NotImplemented': 'NotImplemented',
 	'WrongRepoPermission': 'WrongRepoPermission',
-	'FeatureDisabled': 'FeatureDisabled'
+	'FeatureDisabled': 'FeatureDisabled',
+	'PaymentError': 'PaymentError'
 };
 
 CFError.errorCodes = {
