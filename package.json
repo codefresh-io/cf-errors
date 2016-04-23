@@ -1,6 +1,6 @@
 {
   "name": "cf-errors",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "codefresh errors",
   "repository": {
     "type": "git",
@@ -13,5 +13,16 @@
     "verror": "^1.6.0"
   },
   "devDependencies": {
+    "chai": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-env": "^0.2.0",
+    "gulp-istanbul": "^0.10.4",
+    "gulp-jshint": "^1.11.0",
+    "gulp-mocha-co": "^0.4.1-co.3",
+    "gulp-rimraf": "^0.1.1",
+    "isparta": "^4.0.0",
+    "run-sequence": "^1.1.0",
+    "sinon-chai": "^2.8.0"
   }
 }

@@ -3,9 +3,9 @@
 var WError = require('verror').WError;
 
 class CFError extends WError {
-	constructor(errorType, cause, errorMsg) {
+	constructor(errorType, cause, errorMsg) { // jshint ignore:line
 		var args = Array.prototype.slice.call(arguments);
-		var errorType = args.shift();
+		errorType = args.shift();
 		if (errorType) {
 			if (typeof errorType === "string" && !CFError.errorTypes[errorType]) {
 				throw new WError(CFError.errorTypes.WrongInputError, 'The error type is incorrect');
@@ -17,15 +17,8 @@ class CFError extends WError {
 		else {
 			throw new WError(CFError.errorTypes.WrongInputError, 'The error type is missing');
 		}
-		var str = "";
-		var index = 0;
-		var count = args.length;
 
-		//TODO replace with super(...args); when moving to node v5+
-		//TODO eval is a workaround which is bad because malicious code can be inserted here
-		for (; index < count; ++index)
-			str += "args[" + index + "]" + (index < count - 1 ? ", " : "");
-		eval("super(" + str +")");
+		super(...args);
 
 		if (errorType === CFError.errorTypes.Inherit){
 			if (this.we_cause && this.we_cause.name){
