@@ -8,6 +8,7 @@ var coveralls   = require('gulp-coveralls');
 var istanbul    = require('gulp-istanbul');
 var isparta     = require('isparta');
 var mocha       = require('gulp-mocha-co');
+require('shelljs/global');
 
 gulp.task('no.onlys', function (callback) {
 	exec('find . -path "*/*.spec.js" -type f -exec grep -l "describe.only" {} + \n find . -path "*/*.spec.js" -type f -exec grep -l "it.only" {} +', function (code, output) { // jshint ignore:line
