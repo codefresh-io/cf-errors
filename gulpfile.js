@@ -43,9 +43,8 @@ gulp.task('unit_pre', function () {
 			gulp.src(['**/*.unit.spec.js', '!**/node_modules/**/*.js'], {read: false})
 				.pipe(mocha({reporter: 'spec', timeout: '10000'}))
 				.pipe(istanbul.writeReports({
-					dir: 'coverage',
-					reportOpts: {dir: 'coverage'},
-					reporters: ['lcov']
+					reporters: ['lcov'],
+					reportOpts: {dir: 'coverage'}
 				}));
 		});
 });
@@ -94,7 +93,7 @@ gulp.task('coveralls', function (callback) {
 				callback(err);
 			}
 			else {
-				gulp.src('coverage/coverage-unit.info')
+				gulp.src('coverage/lcov.info')
 					.pipe(coveralls());
 			}
 		});
