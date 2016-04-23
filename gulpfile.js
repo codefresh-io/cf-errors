@@ -28,12 +28,6 @@ gulp.task('lint', ['clean'], function () {
 gulp.task('set_unit_env_vars', function () {
 	env({
 		vars: {
-			GITHUBTESTTOKEN1: '22cfa1d86f9de4185af8da5bdd6580b6760b4185',
-			GITHUBTESTTOKEN2: '63142aba614b4cd9a41f8d7ec0dcf5f75e259021',
-			TAG_CONFIG_FILE_PATH: '../test/tag',
-			NODE_ENV: "test",
-			TEST_MONGO_URI: process.env.TEST_MONGO_URI || "192.168.99.100:27017/unit_test",
-			MAIL_CHIMP_KEY: "e58cff2e15d5b14514f5605e3da938be-us9"
 		}
 	});
 });
@@ -60,17 +54,12 @@ gulp.task('unit_pre', function () {
 gulp.task('set_integ_env_vars', function () {
 	env({
 		vars: {
-			GITHUBTESTTOKEN1: '22cfa1d86f9de4185af8da5bdd6580b6760b4185',
-			GITHUBTESTTOKEN2: '63142aba614b4cd9a41f8d7ec0dcf5f75e259021',
-			TAG_CONFIG_FILE_PATH: '../test/tag',
-			NODE_ENV: "test",
-			TEST_MONGO_URI: process.env.TEST_MONGO_URI || "192.168.99.100:27017/integ_test"
 		}
 	});
 });
 
 gulp.task('integ_pre', function () {
-	return gulp.src(['**/*.js', '!**/*.integ.spec.js', '!**/node_modules/**/*.js', '!.debug/**/*.js', '!gulpfile.js', '!coverage/**/*.js'], {read: false})
+	return gulp.src(['**/*.integ.spec.js', '!**/node_modules/**/*.js'], {read: false})
 		.pipe(mocha({reporter: 'spec', timeout: '10000'}));
 });
 
