@@ -45,7 +45,10 @@ gulp.task('unit_pre', function () {
 				.pipe(istanbul.writeReports({
 					reporters: ['lcov'],
 					reportOpts: {dir: 'coverage'}
-				}));
+				}))
+				.once('end', function () {
+					process.exit();
+				});
 		});
 });
 
@@ -59,7 +62,10 @@ gulp.task('set_integ_env_vars', function () {
 
 gulp.task('integ_pre', function () {
 	return gulp.src(['**/*.integ.spec.js', '!**/node_modules/**/*.js'], {read: false})
-		.pipe(mocha({reporter: 'spec', timeout: '10000'}));
+		.pipe(mocha({reporter: 'spec', timeout: '10000'}))
+		.once('end', function () {
+			process.exit();
+		});
 });
 
 
