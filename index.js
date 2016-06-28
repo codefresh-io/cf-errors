@@ -76,7 +76,6 @@ CFError.errorTypes = {
 	'ValidationError': 'ValidationError',
 	'TypeError': 'TypeError',
 	'BadRequestError': 'BadRequestError',
-	'ServiceUnavailableError': 'ServiceUnavailableError',
 	'WrongInputError': 'WrongInputError',
 	'Error': 'Error',
 	'Inherit': 'Inherit',
@@ -84,7 +83,9 @@ CFError.errorTypes = {
 	'NotImplemented': 'NotImplemented',
 	'WrongRepoPermission': 'WrongRepoPermission',
 	'FeatureDisabled': 'FeatureDisabled',
-	'PaymentError': 'PaymentError'
+	'PaymentError': 'PaymentError',
+	'ServiceUnavailableError:': 'ServiceUnavailableError',
+	'InternalServerError:': 'InternalServerError'
 };
 
 CFError.errorCodes = {
@@ -95,7 +96,8 @@ CFError.errorCodes = {
 	'ValidationError': 400,
 	'TypeError': 400,
 	'BadRequestError': 400,
-	'ServiceUnavailableError': 500,
+	'ServiceUnavailableError': 503,
+	'InternalServerError': 500,
 	'WrongInputError': 400,
 	'Error': 400,
 	'Inherit': 400
