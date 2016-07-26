@@ -66,6 +66,31 @@ class CFError extends WError {
 		return CFError.errorCodes[this.name];
 	}
 
+	recognize() {
+		this.recognized = "true";
+	}
+
+	deRecognize() {
+		this.recognized = "false";
+	}
+
+	isRecognized() {
+		if (this.recognized === "false"){
+			return false;
+		}
+		else if (this.recognized === "true"){
+			return true;
+		}
+		else if (this.we_cause && this.we_cause.message){
+			return this.we_cause.isRecognized();
+		}
+		else {
+			return false;
+		}
+	}
+
+
+
 }
 
 CFError.errorTypes = {
