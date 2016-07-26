@@ -5,7 +5,15 @@ var WError = require('verror').WError;
 class CFError extends WError {
 	constructor(errorType, cause, errorMsg) { // jshint ignore:line
 		var args = Array.prototype.slice.call(arguments);
-		errorType = args.shift();
+		var options;
+		if (args.length === 1){
+			options = args[0];
+			errorType = options.type;
+		}
+		else {
+			errorType = args.shift();
+		}
+
 		if (errorType) {
 			if (typeof errorType === "string" && !CFError.errorTypes[errorType]) {
 				throw new WError(CFError.errorTypes.WrongInputError, 'The error type is incorrect');
@@ -18,7 +26,27 @@ class CFError extends WError {
 			throw new WError(CFError.errorTypes.WrongInputError, 'The error type is missing');
 		}
 
-		super(...args);
+
+		if (options){
+			if (options.cause){
+				super(options.cause, options.message);
+			}
+			else {
+				super(options.message);
+			}
+			if (options.hasOwnProperty("recognized")){
+				if (options.recognized){
+					this.recognized = "true";
+				}
+				else{
+					this.recognized = "false";
+				}
+			}
+		}
+		else {
+			super(...args);
+		}
+
 
 		if (errorType === CFError.errorTypes.Inherit){
 			if (this.we_cause && this.we_cause.name){
@@ -65,15 +93,7 @@ class CFError extends WError {
 	getStatusCode() {
 		return CFError.errorCodes[this.name];
 	}
-
-	recognize() {
-		this.recognized = "true";
-	}
-
-	deRecognize() {
-		this.recognized = "false";
-	}
-
+	
 	isRecognized() {
 		if (this.recognized === "false"){
 			return false;
