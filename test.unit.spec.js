@@ -58,6 +58,27 @@ describe('CFErrors tests', function () {
 				expect(error2.isRecognized()).to.equal(true);
 			});
 
+			it('should not call handle correctly case when base error is not CFError', function(){
+				var error = new Error("base error");
+				var error2 = new CFError({
+					type: ErrorTypes.Inherit,
+					cause: error,
+					message: "extended error"
+				});
+				expect(error2.isRecognized()).to.equal(false);
+			});
+
+			it('should not call handle correctly case when base error is not CFError', function(){
+				var error = new Error("base error");
+				var error2 = new CFError({
+					type: ErrorTypes.Inherit,
+					cause: error,
+					message: "extended error",
+					recognized: true
+				});
+				expect(error2.isRecognized()).to.equal(true);
+			});
+
 		});
 
 		describe('negative', function(){

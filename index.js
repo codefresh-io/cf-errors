@@ -101,7 +101,7 @@ class CFError extends WError {
 		else if (this.recognized === "true"){
 			return true;
 		}
-		else if (this.we_cause && this.we_cause.message){
+		else if (this.we_cause && this.we_cause.constructor && this.we_cause.constructor.name === "CFError"){
 			return this.we_cause.isRecognized();
 		}
 		else {
