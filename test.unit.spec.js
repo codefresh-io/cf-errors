@@ -147,7 +147,6 @@ describe('CFErrors tests', function () {
 
                 it('should create an error derived from a non error object', function(){
 
-                    var error = {};
                     new CFError(ErrorTypes.BadRequestError);
 
                 });
