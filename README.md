@@ -60,14 +60,14 @@ In order to load your own errors you need to load them.
 var errors = 
 [
  {
-  "name": "YourOwnError,
-  "message": "default message,
-  "field": "value
+  "name": "YourOwnError",
+  "message": "default message",
+  "field": "value"
  },
  {
-  "name": "YourOwnError1,
-  "message": "default message,
-  "field": "value
+  "name": "YourOwnError1",
+  "message": "default message",
+  "field": "value"
  }
 ];
 CFErrors.loadErrors(errors);
