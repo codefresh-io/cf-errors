@@ -1,7 +1,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/codefresh-io/cf-errors/badge.svg?branch=develop)](https://coveralls.io/github/codefresh-io/cf-errors?branch=develop)
 
 # Extensible error library
-This module was written with inspiration taken from verror module.
+This module was written with inspiration taken from verror module. <br/>
 This library supports a fully extensible error objects.
 
 ### Creating an error
@@ -17,7 +17,7 @@ var error = new CFError(
 );
 ```
 
-### extending an already existing error
+### Extending an already existing error
 ```javascript
 var extendedError = new CFError(
   {
@@ -29,8 +29,30 @@ var extendedError = new CFError(
 ```
 
 ### Predefine Error Types
-All http errors are already provided.
-All node.js core errors are already provided.
+#### Http Errors
+All http errors are available.
+They will contain a field name 'statusCode' for your use.
+```javascript
+var error = new CFError(
+  {
+    type: ErrorType.BadRequestError,
+    message: `failed to validate your request`
+  }
+);
+```
+Then your express error middleware can look something like this:
+```javascript
+app.use(function(err, request, response, next){
+    console.error(err.stack);
+    var statusCode = 400;
+    if (err.constructor && err.constructor.name === "CFError") { 
+        statusCode = err.statusCode || statusCode;
+    }
+    return response.status(statusCode).send(err.message);
+});
+```
+#### Node Errors
+All node.js core errors are also available
 
 ### Extending with your own errors
 In order to load your own errors you need to load them.
