@@ -57,18 +57,19 @@ All node.js core errors are also available
 ### Extending with your own errors
 In order to load your own errors you need to load them.
 ```javascript
-var errors = [
+var errors = 
+[
  {
-  name: "YourOwnError,
-  message: "default message,
-  field: "value
+  "name": "YourOwnError,
+  "message": "default message,
+  "field": "value
  },
  {
-  name: "YourOwnError1,
-  message: "default message,
-  field: "value
+  "name": "YourOwnError1,
+  "message": "default message,
+  "field": "value
  }
-]
+];
 CFErrors.loadErrors(errors);
 ```
 From this point these errors will be available to use.
@@ -119,7 +120,7 @@ var extendedError = new CFError(
 );
 ```
 
-### signifying an error as a recognized error
+### Signifying an error as a recognized error
 Sometimes it is important to be able to differentiate between an error that is recognized and between an un-recognized error.
 For example in case your api receives a request that has a missing parameter you would like to create an error but not report it back to your monitoring systems like new-relic.
 Then in your error middleware you can check if the error has been recognized and act accordingly and not report this error to your monitoring systems.
@@ -142,4 +143,24 @@ if (error.isRecognized()){
 The default return value of isRecognized function will be false.
 Signifying an error as a recognized error will affect the whole chain of errors and will be inherited.
 This also means that you can signify a higher error explicitly with the value false which will then make the isRecognized function return false.
+
+### Using recognized errors to report to external systems
+If you are marking errors as recognized you can use it to decide if you should send the generated error to monitoring system. <br/>
+If you are using express.js your error middleware can look something like this:
+```javascript
+app.use(function(err, request, response, next){
+    console.error(err.stack);
+    var statusCode = 400;
+    if (err.constructor && err.constructor.name === "CFError") { 
+        statusCode = err.statusCode || statusCode;
+       if (!err.isRecognized()){
+          //report to external system. like new-relic
+        }
+    }
+    else {
+      //report to external system. like new-relic
+    }
+    return response.status(statusCode).send(err.message);
+});
+```
 
