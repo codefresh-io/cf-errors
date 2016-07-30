@@ -1,7 +1,8 @@
 {
   "name": "cf-errors",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "codefresh errors",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/codefresh/cf-errors.git"
@@ -10,7 +11,7 @@
     "cf-api"
   ],
   "dependencies": {
-    "verror": "^1.6.0"
+
   },
   "devDependencies": {
     "chai": "^3.0.0",
