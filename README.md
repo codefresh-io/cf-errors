@@ -8,23 +8,19 @@ This library supports a fully extensible error objects.
 var CFError    = require('cf-errors');
 var ErrorTypes = CFError.errorTypes;
 
-var error = new CFError(
-  {
+var error = new CFError({
     type: ErrorType.Error,
     message: `error message`
-  }
-);
+});
 ```
 
 ## Extending an already existing error
 ```javascript
-var extendedError = new CFError(
-  {
+var extendedError = new CFError({
     type: ErrorType.Error,
     message: `extended error message`,
     cause: error
-  }
-);
+});
 ```
 
 ## Predefine Error Types
@@ -32,12 +28,10 @@ var extendedError = new CFError(
 All http errors are available.
 They will contain a field name 'statusCode' for your use.
 ```javascript
-var error = new CFError(
-  {
+var error = new CFError({
     type: ErrorType.BadRequestError,
     message: `failed to validate your request`
-  }
-);
+});
 ```
 If you are using express.js then your error middleware can look something like this:
 ```javascript
@@ -56,30 +50,27 @@ All node.js core errors are also available
 ## Extending with your own errors
 In order to load your own errors you need to load them.
 ```javascript
-var errors = 
-[
- {
-  "name": "YourOwnError",
-  "message": "default message",
-  "field": "value"
- },
- {
-  "name": "YourOwnError1",
-  "message": "default message",
-  "field": "value"
- }
+var errors = [
+  {
+    "name": "YourOwnError",
+    "message": "default message",
+    "field": "value"
+  },
+  {
+    "name": "YourOwnError1",
+    "message": "default message",
+    "field": "value"
+  }
 ];
 CFErrors.loadErrors(errors);
 ```
 From this point these errors will be available to use.
 ```javascript
-var error = new CFError(
-  {
+var error = new CFError({
     type: ErrorType.YourOwnError,
     message: `will override default message`,
     cause: error
-  }
-);
+});
 ```
 Every field declared in the object will be also accessible
 ```javascript
@@ -97,26 +88,22 @@ will print a the whole chain of errors
 ## Adding extra information to the error
 When constructing an error you can pass an additional field named 'extra' which can hold additional information releated to the current context. this information will be printed as part of the stack or the toString method.
 ```javascript
-var error = new CFError(
-  {
+var error = new CFError({
     type: ErrorType.YourOwnError,
     message: `will override default message`,
     cause: error,
     extra: {extraField: "value"}
-  }
-);
+});
 ```
 
 ## Inheriting the previous error type
 In order to be able to extend the previous error with more data without affecting the type of the error is possible using the Inherited error type
 ```javascript
-var extendedError = new CFError(
-  {
+var extendedError = new CFError({
     type: ErrorType.Inherit,
     message: `extended error message`,
     cause: error
-  }
-);
+});
 ```
 
 ## Signifying an error as a recognized error
@@ -124,14 +111,12 @@ Sometimes it is important to be able to differentiate between an error that is r
 For example in case your api receives a request that has a missing parameter you would like to create an error but not report it back to your monitoring systems like new-relic.
 Then in your error middleware you can check if the error has been recognized and act accordingly and not report this error to your monitoring systems.
 ```javascript
-var extendedError = new CFError(
-  {
+var extendedError = new CFError({
     type: ErrorType.Inherit,
     message: `extended error message`,
     cause: error,
     recognized: true
-  }
-);
+});
 ```
 Then you can check if the error is recognized:
 ```javascript
