@@ -1,6 +1,6 @@
 {
   "name": "cf-errors",
-  "version": "0.0.17",
+  "version": "0.1.0",
   "description": "codefresh errors",
   "main": "lib/index.js",
   "repository": {
