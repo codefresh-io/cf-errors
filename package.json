@@ -1,6 +1,6 @@
 {
   "name": "cf-errors",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "codefresh errors",
   "main": "lib/index.js",
   "repository": {
@@ -11,7 +11,7 @@
     "cf-api"
   ],
   "dependencies": {
-
+    "lodash": "4.15.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
@@ -23,6 +23,7 @@
     "gulp-mocha-co": "^0.4.1-co.3",
     "gulp-rimraf": "^0.1.1",
     "isparta": "^4.0.0",
+    "proxyquire": "^1.7.10",
     "run-sequence": "^1.1.0",
     "shelljs": "^0.6.0",
     "sinon-chai": "^2.8.0"
