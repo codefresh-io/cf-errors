@@ -24,7 +24,7 @@ var error = new CFError({
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, {field: "override first value"});
 ```
 
-###Last argument to the constructor can be a string, which will populate the message field automatically
+###Last argument passed to the constructor can be a string, which will populate the message field automatically
 ```javascript
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
 ```
