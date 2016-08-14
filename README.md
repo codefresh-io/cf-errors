@@ -34,7 +34,7 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 var error = new CFError({name: "ErrorType"}, "my error name");
 ```
 
-## Extending an already existing error
+## Extending an already existing error will also chain their stacks
 ```javascript
 var extendedError = new CFError({
     message: `extended error message`,
@@ -42,7 +42,7 @@ var extendedError = new CFError({
 });
 ```
 
-## Predefine Error Types
+## Predefined Error Types
 ```javascript
 var CFError    = require('cf-errors');
 var Errors     = CFError.Errors;
