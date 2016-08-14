@@ -11,11 +11,11 @@ var CFError    = require('cf-errors');
 ```javascript
 var error = new CFError("error message");
 ```
+
 ###Extending the error is very easy
 ```javascript
-var error = new CFError({
-    field: "value",
-    message: `error messagex
+var error = new CFError({field: "value", message: `error message`});
+```
 
 ###Passing multiple object will extend the previous objects
 ```javascript
@@ -32,7 +32,7 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 var error = new CFError({name: "ErrorType"}, "my error name");
 ```
 
-## Extending an already existing error will also chain their stacks
+## Extending an already existing error
 ```javascript
 var extendedError = new CFError({
     message: `extended error message`,
@@ -45,6 +45,7 @@ will print the stack of all previous errors too
 ```javascript
 console.log(extendedError.stack);
 ```
+
 ## toString()
 will print a the whole chain of errors
 
