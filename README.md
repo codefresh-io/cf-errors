@@ -3,10 +3,12 @@
 This module was written with inspiration taken from verror module. <br/>
 This library supports a fully extensible error objects.
 
-## Creating an error
 ```javascript
 var CFError    = require('cf-errors');
+```
 
+## Creating an error
+```javascript
 var error = new CFError("error message");
 ```
 ###Extending the error is very easy
