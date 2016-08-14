@@ -6,7 +6,6 @@ This library supports a fully extensible error objects.
 ## Creating an error
 ```javascript
 var CFError    = require('cf-errors');
-var Errors     = CFError.Errors;
 
 var error = new CFError("error message");
 ```
