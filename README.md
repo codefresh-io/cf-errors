@@ -47,7 +47,13 @@ console.log(extendedError.stack);
 ```
 
 ## toString()
-will print a the whole chain of errors
+Will print the whole chain of errors in a nice way. </br>
+You can always override it if you want
+```javascript
+CFError.prototype.toString = function(){
+    //your implementation
+}
+```
 
 ## Predefined Error Types
 ```javascript
