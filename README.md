@@ -75,7 +75,7 @@ If you are using express.js then your error middleware can look something like t
 app.use(function(err, request, response, next){
     console.error(err.stack);
     var statusCode = 400;
-    if (err.constructor && err.constructor.name === "CFError") { 
+    if (err.constructor && err.constructor.name === "CFError") {
         statusCode = err.statusCode || statusCode;
     }
     return response.status(statusCode).send(err.message);
