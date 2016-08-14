@@ -15,9 +15,7 @@ var error = new CFError("error message");
 ```javascript
 var error = new CFError({
     field: "value",
-    message: `error message`
-});
-```
+    message: `error messagex
 
 ###Passing multiple object will extend the previous objects
 ```javascript
@@ -41,6 +39,14 @@ var extendedError = new CFError({
     cause: error
 });
 ```
+
+## Printing the stack
+will print the stack of all previous errors too
+```javascript
+console.log(extendedError.stack);
+```
+## toString()
+will print a the whole chain of errors
 
 ## Predefined Error Types
 ```javascript
@@ -70,33 +76,6 @@ app.use(function(err, request, response, next){
 ```
 #### Node Errors
 All node.js core errors are also available using the Errors.Node object.
-
-## Extending with your own errors
-```javascript
-var MyErrors = {
-    YourOwnError: {
-        statusCode: 500,
-        field: "value",
-        message: "default message"
-    }
-}
-var error = new CFError(MyErrors.YourOwnError, {
-    message: `override message`,
-    cause: error
-});
-```
-Every field declared in the object will be also accessible
-```javascript
-console.log(error.field);
-```
-
-## Printing the stack
-will print the stack of all previous errors too
-```javascript
-console.log(extendedError.stack);
-```
-## toString()
-will print a the whole chain of errors
 
 ## Inheriting the previous error type
 In order to be able to extend the previous error with more data without affecting the type of the error is possible using the Inherited error type
