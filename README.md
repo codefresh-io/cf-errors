@@ -6,14 +6,10 @@ This library supports a fully extensible error objects.
 ## Creating an error
 ```javascript
 var CFError    = require('cf-errors');
-
 var error = new CFError("error message");
 ```
 ###Extending the error is very easy
 ```javascript
-var CFError    = require('cf-errors');
-var Errors     = CFError.Errors;
-
 var error = new CFError({
     field: "value",
     message: `error message`
@@ -22,25 +18,16 @@ var error = new CFError({
 
 ###Passing multiple object will extend the previous objects
 ```javascript
-var CFError    = require('cf-errors');
-var Errors     = CFError.Errors;
-
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, {field: "override first value"});
 ```
 
 ###Last argument to the constructor can be a string, which will populate the message field automatically
 ```javascript
-var CFError    = require('cf-errors');
-var Errors     = CFError.Errors;
-
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
 ```
 
 ###Setting the error name is as simple as just populating the name field
 ```javascript
-var CFError    = require('cf-errors');
-var Errors     = CFError.Errors;
-
 var error = new CFError({name: "ErrorType"}, "my error name");
 ```
 
@@ -53,7 +40,12 @@ var extendedError = new CFError({
 ```
 
 ## Predefine Error Types
-All predefined errors are actually just simple objects so using the extension capability allows us to use them easily and extend them when needed
+```javascript
+var CFError    = require('cf-errors');
+var Errors     = CFError.Errors;
+```
+All predefined errors are exposed on 'CFError.Errors' object. </br>
+They are actually just simple objects so using the extension capability allows us to use them easily and extend them when needed.
 #### Http Errors
 All http errors are available.
 They will contain a field name 'statusCode' for your use.
