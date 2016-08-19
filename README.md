@@ -22,25 +22,25 @@ var CFError    = require('cf-errors');
 var error = new CFError("error message");
 ```
 
-    ###Extending the error
-    ```javascript
-    var error = new CFError({field: "value", message: `error message`});
-    ```
+###Extending the error
+```javascript
+var error = new CFError({field: "value", message: `error message`});
+```
 
-    ###Passing multiple object will extend the previous objects
-    ```javascript
-    var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, {field: "override first value"});
-    ```
+###Passing multiple object will extend the previous objects
+```javascript
+var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, {field: "override first value"});
+```
 
-    ###Last argument passed to the constructor can be a string, which will populate the message field automatically
-    ```javascript
-    var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
-    ```
+###Last argument passed to the constructor can be a string, which will populate the message field automatically
+```javascript
+var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
+```
 
-    ###Setting the error name is as simple as just populating the name field
-    ```javascript
-    var error = new CFError({name: "ErrorType"}, "my error name");
-    ```
+###Setting the error name is as simple as just populating the name field
+```javascript
+var error = new CFError({name: "ErrorType"}, "my error name");
+```
 
 ## Extending an already existing error
 ```javascript
