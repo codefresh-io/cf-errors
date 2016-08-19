@@ -1,3 +1,5 @@
+cf-errors
+===========
 [![Coverage Status](https://coveralls.io/repos/github/codefresh-io/cf-errors/badge.svg?branch=develop)](https://coveralls.io/github/codefresh-io/cf-errors?branch=develop)
 
 This module was written with inspiration taken from verror module. <br/>
@@ -114,6 +116,8 @@ The default return value of recognized field will be false.
 Signifying an error as a recognized error will affect the whole chain of errors and will be inherited.
 This also means that you can signify a higher error explicitly with the value false which will then make the recognized field return false even if declared true somewhere in the chain.
 
+## getFirstValue
+
 ## Using recognized errors to report to external systems
 If you are marking errors as recognized you can use it to decide if you should send the generated error to monitoring system. <br/>
 If you are using express.js your error middleware can look something like this:
@@ -133,4 +137,7 @@ app.use(function(err, request, response, next){
     return response.status(statusCode).send(err.message);
 });
 ```
+
+## Running the tests
+Just run 'npm test' or 'gulp unit_test'
 
