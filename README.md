@@ -27,7 +27,12 @@ var error = new CFError("error message");
 var error = new CFError({field: "value", message: `error message`});
 ```
 
-###Passing multiple object will extend the previous objects
+###Setting the error name is as simple as just populating the name field
+```javascript
+var error = new CFError({name: "ErrorType", message: "my error name"});
+```
+
+###Passing multiple objects will extend the previous objects
 ```javascript
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, {field: "override first value"});
 ```
@@ -35,11 +40,6 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 ###Last argument passed to the constructor can be a string, which will populate the message field automatically
 ```javascript
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
-```
-
-###Setting the error name is as simple as just populating the name field
-```javascript
-var error = new CFError({name: "ErrorType"}, "my error name");
 ```
 
 ## Extending an already existing error
@@ -95,55 +95,30 @@ app.use(function(err, request, response, next){
 All node.js core errors are also available using the Errors.Node object.
 
 ## Inheriting the previous error type
-In order to be able to extend the previous error with more data without affecting the type of the error is possible using the Inherited error type
+Creating an error with the same name as its cause can be achieved using 'Inherit' as the error name.
 ```javascript
 var extendedError = new CFError(Errors.Inherit, {
     message: `extended error message`,
     cause: error
 });
 ```
-
-## Signifying an error as a recognized error
-Sometimes it is important to be able to differentiate between an error that is recognized and between an un-recognized error.
-For example in case your api receives a request that has a missing parameter you would like to create an error but not report it back to your monitoring systems like new-relic.
-Then in your error middleware you can check if the error has been recognized and act accordingly and not report this error to your monitoring systems.
+This will also work
 ```javascript
-var extendedError = new CFError(Errors.Inherit, {
+var extendedError = new CFError({
+    name: "Inherit",
     message: `extended error message`,
-    cause: error,
-    recognized: true
+    cause: error
 });
-```
-Then you can check if the error is recognized:
-```javascript
-if (error.recognized){
-  //Your code
-}
-```
-The default return value of recognized field will be false.
-Signifying an error as a recognized error will affect the whole chain of errors and will be inherited.
-This also means that you can signify a higher error explicitly with the value false which will then make the recognized field return false even if declared true somewhere in the chain.
 
-## getFirstValue
-
-## Using recognized errors to report to external systems
-If you are marking errors as recognized you can use it to decide if you should send the generated error to monitoring system. <br/>
-If you are using express.js your error middleware can look something like this:
+## Getting the value of the first occurrence of a field in the chain
+Sometimes you will populate an error with a field and wrap it with an additional error. Then in order to get the value of the field you will need to recursivelly go over the whole chain. </br>
+In order to get the first value of a field in the chain use 'getFirstValue' function
 ```javascript
-app.use(function(err, request, response, next){
-    console.error(err.stack);
-    var statusCode = 400;
-    if (err.constructor && err.constructor.name === "CFError") { 
-        statusCode = err.statusCode || statusCode;
-       if (!err.recognized){
-          //report to external system. like new-relic
-        }
-    }
-    else {
-      //report to external system. like new-relic
-    }
-    return response.status(statusCode).send(err.message);
-});
+var error = new CFError({field: "value", field1: "firstValue"});
+var extendedError = new CFError({cause: error, field1: "newValue"});
+extendedError.getFirstValue('field') // "value"
+extendedError.getFirstValue('field1') // "newValue"
+extendedError.getFirstValue('field2') // undefined
 ```
 
 ## Running the tests
