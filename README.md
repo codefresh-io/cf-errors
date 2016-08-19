@@ -134,5 +134,5 @@ extendedError.getFirstValue('field2') // undefined
 
 <a name="tests" />
 ## Running the tests
-Just run 'npm test' or 'gulp unit_test'
+'npm test' or 'gulp unit_test'
 
