@@ -122,8 +122,8 @@ var extendedError = new CFError({
 
 <a name="getfirstvalue" />
 ## Getting the value of the first occurrence of a field in the chain
-Sometimes you will populate an error with a field and wrap it with an additional error. Then in order to get the value of the field you will need to recursivelly go over the whole chain. </br>
-In order to get the first value of a field in the chain use 'getFirstValue' function
+Sometimes you will populate an error with a field and wrap it with an additional error. In order to get the value of the field you will need to recursively go over the whole chain. </br>
+In order to get the first value of a field in the chain use 'getFirstValue' function.
 ```javascript
 var error = new CFError({field: "value", field1: "firstValue"});
 var extendedError = new CFError({cause: error, field1: "newValue"});
