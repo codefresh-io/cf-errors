@@ -12,11 +12,15 @@ Extensible error library
 
 [![Coverage Status](https://coveralls.io/repos/github/codefresh-io/cf-errors/badge.svg?branch=develop)](https://coveralls.io/github/codefresh-io/cf-errors?branch=develop)
 
+* [Constructor](#constructor)
+* [Extending with a previous error](#cause)
+
 ## Installation
 ```javascript
 var CFError    = require('cf-errors');
 ```
 
+<a name="constructor" />
 ## Creating an error
 ```javascript
 var error = new CFError("error message");
@@ -42,7 +46,8 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
 ```
 
-## Extending an already existing error
+<a name="cause" />
+## Extending an already existing error with a previous error
 ```javascript
 var extendedError = new CFError({
     message: `extended error message`,
