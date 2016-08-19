@@ -3,6 +3,7 @@ cf-errors
 [![Coverage Status](https://coveralls.io/repos/github/codefresh-io/cf-errors/badge.svg?branch=develop)](https://coveralls.io/github/codefresh-io/cf-errors?branch=develop)
 
 Extensible error library.
+Inspired from Verror.https://github.com/joyent/node-verror
 
 ## Installation
 ```javascript
@@ -46,6 +47,7 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 var error = new CFError({field: "value", message: `error message`}, {field2: "value"}, "my error message");
 ```
 
+</br>
 <a name="cause" />
 ## Extending with a previous error
 ```javascript
@@ -55,6 +57,7 @@ var extendedError = new CFError({
 });
 ```
 
+</br>
 <a name="stack" />
 ## Printing the stack
 will print the stack of all previous errors too
@@ -62,6 +65,7 @@ will print the stack of all previous errors too
 console.log(extendedError.stack);
 ```
 
+</br>
 <a name="toString" />
 ## toString()
 Will print the whole chain of errors in a nice way. </br>
@@ -72,6 +76,7 @@ CFError.prototype.toString = function(){
 }
 ```
 
+</br>
 <a name="predefined" />
 ## Predefined Error Types
 ```javascript
@@ -102,6 +107,7 @@ app.use(function(err, request, response, next){
 #### Node Errors
 All node.js core errors are also available using the Errors.Node object.
 
+</br>
 <a name="inherit" />
 ## Inheriting the previous error type
 Creating an error with the same name as its cause can be achieved using 'Inherit' as the error name.
@@ -119,6 +125,7 @@ var extendedError = new CFError({
     cause: error
 });
 
+</br>
 <a name="getfirstvalue" />
 ## Getting the value of the first occurrence of a field in the chain
 Sometimes you will populate an error with a field and wrap it with an additional error. Then in order to get the value of the field you will need to recursivelly go over the whole chain. </br>
@@ -131,6 +138,7 @@ extendedError.getFirstValue('field1') // "newValue"
 extendedError.getFirstValue('field2') // undefined
 ```
 
+</br>
 <a name="tests" />
 ## Running the tests
 Just run 'npm test' or 'gulp unit_test'
