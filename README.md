@@ -1,9 +1,19 @@
 cf-errors
 ===========
+
+Extensible error library
+
+* Ability to extend existing errors with new ones
+* Nested stack traces
+* Ability to retrieve the value of the first occurrence of a field in the chain
+* Ability to inherit the previous error name
+* Easily extensible
+* Predefined http errors
+* Predefined node.js errors
+
 [![Coverage Status](https://coveralls.io/repos/github/codefresh-io/cf-errors/badge.svg?branch=develop)](https://coveralls.io/github/codefresh-io/cf-errors?branch=develop)
 
 This module was written with inspiration taken from verror module. <br/>
-This library supports a fully extensible error objects.
 
 ```javascript
 var CFError    = require('cf-errors');
