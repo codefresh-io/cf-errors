@@ -4,7 +4,7 @@ cf-errors
 
 Extensible error library.
 
-## Installation
+##Installation
 ```javascript
 $ npm install cf-errors
 ```
@@ -20,7 +20,7 @@ $ npm install cf-errors
 
 
 <a name="constructor" />
-## Creating an error
+##Creating an error
 ```javascript
 var CFError = require('cf-errors');
 var error   = new CFError("error message");
@@ -47,7 +47,7 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 ```
 
 <a name="cause" />
-## Extending with a previous error
+##Extending with a previous error
 ```javascript
 var extendedError = new CFError({
     message: `extended error message`,
@@ -56,14 +56,14 @@ var extendedError = new CFError({
 ```
 
 <a name="stack" />
-## Printing the stack
+##Printing the stack
 will print the stack of all previous errors too
 ```javascript
 console.log(extendedError.stack);
 ```
 
 <a name="toString" />
-## toString()
+##toString()
 Will print the whole chain of errors in a nice way. </br>
 You can always override it if you want.
 ```javascript
@@ -73,14 +73,14 @@ CFError.prototype.toString = function(){
 ```
 
 <a name="predefined" />
-## Predefined Error Types
+##Predefined Error Types
 ```javascript
 var CFError    = require('cf-errors');
 var Errors     = CFError.Errors;
 ```
 All predefined errors are exposed on 'CFError.Errors' object. </br>
 They are actually just simple objects so using the extension capability allows us to use them easily and extend them when needed.
-#### Http Errors
+####Http Errors
 All http errors are available.
 They will contain a field name 'statusCode' for your use.
 ```javascript
@@ -99,11 +99,11 @@ app.use(function(err, request, response, next){
     return response.status(statusCode).send(err.message);
 });
 ```
-#### Node Errors
+####Node Errors
 All node.js core errors are also available using the Errors.Node object.
 
 <a name="inherit" />
-## Inheriting the previous error type
+##Inheriting the previous error type
 Creating an error with the same name as its cause can be achieved using 'Inherit' as the error name.
 ```javascript
 var extendedError = new CFError(Errors.Inherit, {
@@ -121,7 +121,7 @@ var extendedError = new CFError({
 ```
 
 <a name="getfirstvalue" />
-## Getting the value of the first occurrence of a field in the chain
+##Getting the value of the first occurrence of a field in the chain
 Sometimes you will populate an error with a field and wrap it with an additional error. In order to get the value of the field you will need to recursively go over the whole chain. </br>
 In order to get the first value of a field in the chain use 'getFirstValue' function.
 ```javascript
@@ -133,6 +133,6 @@ extendedError.getFirstValue('field2') // undefined
 ```
 
 <a name="tests" />
-## Running the tests
+##Running the tests
 'npm test' or 'gulp unit_test'
 
