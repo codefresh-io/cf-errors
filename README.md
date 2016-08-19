@@ -18,7 +18,7 @@ Extensible error library
 * [toString](#toString)
 * [Predefined errors](#predefined)
 * [Inheriting the previous error type](#inherit)
-* [Getting the value of the first occurrence of a field in the chain](#getFirstValue)
+* [Getting the value of the first occurrence of a field in the chain](#getfirstvalue)
 
 ## Installation
 ```javascript
@@ -124,7 +124,7 @@ var extendedError = new CFError({
     cause: error
 });
 
-<a name="getFirstValue" />
+<a name="getfirstvalue" />
 ## Getting the value of the first occurrence of a field in the chain
 Sometimes you will populate an error with a field and wrap it with an additional error. Then in order to get the value of the field you will need to recursivelly go over the whole chain. </br>
 In order to get the first value of a field in the chain use 'getFirstValue' function
