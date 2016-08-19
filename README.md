@@ -4,6 +4,11 @@ cf-errors
 
 Extensible error library
 
+## Installation
+```javascript
+npm install cf-errors
+```
+
 * [Creating an error](#constructor)
 * [Extending with a previous error](#cause)
 * [Printing the stack](#stack)
@@ -13,15 +18,12 @@ Extensible error library
 * [Getting the value of the first occurrence of a field in the chain](#getfirstvalue)
 * [Running the tests](#tests)
 
-## Installation
-```javascript
-var CFError    = require('cf-errors');
-```
 
 <a name="constructor" />
 ## Creating an error
 ```javascript
-var error = new CFError("error message");
+var CFError = require('cf-errors');
+var error   = new CFError("error message");
 ```
 
 ###Extending the error
