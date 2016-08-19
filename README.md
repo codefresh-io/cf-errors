@@ -12,10 +12,10 @@ $ npm install cf-errors
 * [Creating an error](#constructor)
 * [Extending with a previous error](#cause)
 * [Printing the stack](#stack)
-* [toString](#toString)
+* [toString()](#toString)
 * [Predefined errors](#predefined)
 * [Inheriting the previous error type](#inherit)
-* [Getting the value of the first occurrence of a field in the chain](#getfirstvalue)
+* [getFirstValue('fieldName') - Getting the value of the first occurrence of a field in the chain](#getfirstvalue)
 * [Running the tests](#tests)
 
 
@@ -121,7 +121,7 @@ var extendedError = new CFError({
 ```
 
 <a name="getfirstvalue" />
-## Getting the value of the first occurrence of a field in the chain
+## getFirstValue('fieldName')
 Sometimes you will populate an error with a field and wrap it with an additional error. In order to get the value of the field you will need to recursively go over the whole chain. </br>
 In order to get the first value of a field in the chain use 'getFirstValue' function.
 ```javascript
