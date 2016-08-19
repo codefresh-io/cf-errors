@@ -1,14 +1,14 @@
 {
   "name": "cf-errors",
   "version": "0.1.3",
-  "description": "codefresh errors",
+  "description": "Extensible error library",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codefresh/cf-errors.git"
+    "url": "git+https://github.com/codefresh/cf-errors.git"
   },
   "keywords": [
-    "cf-api"
+    "error", "errors"
   ],
   "dependencies": {
     "lodash": "4.15.0"
@@ -27,5 +27,14 @@
     "run-sequence": "^1.1.0",
     "shelljs": "^0.6.0",
     "sinon-chai": "^2.8.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/codefresh/cf-errors/issues"
+  },
+  "homepage": "https://github.com/codefresh/cf-errors#readme",
+  "scripts": {
+    "test": "gulp unit_test"
+  },
+  "author": "Codefresh",
+  "license": "ISC"
 }
