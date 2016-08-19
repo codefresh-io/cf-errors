@@ -31,7 +31,7 @@ var error   = new CFError("error message");
 var error = new CFError({field: "value", message: `error message`});
 ```
 
-###Setting the error name is as simple as just populating the name field
+###Setting the error name
 ```javascript
 var error = new CFError({name: "ErrorType", message: "my error name"});
 ```
@@ -118,6 +118,7 @@ var extendedError = new CFError({
     message: `extended error message`,
     cause: error
 });
+```
 
 <a name="getfirstvalue" />
 ## Getting the value of the first occurrence of a field in the chain
