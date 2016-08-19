@@ -6,7 +6,7 @@ Extensible error library
 
 ## Installation
 ```javascript
-npm install cf-errors
+$ npm install cf-errors
 ```
 
 * [Creating an error](#constructor)
