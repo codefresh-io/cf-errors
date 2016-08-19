@@ -12,8 +12,13 @@ Extensible error library
 
 [![Coverage Status](https://coveralls.io/repos/github/codefresh-io/cf-errors/badge.svg?branch=develop)](https://coveralls.io/github/codefresh-io/cf-errors?branch=develop)
 
-* [Constructor](#constructor)
+* [Creating an error](#constructor)
 * [Extending with a previous error](#cause)
+* [Printing the stack](#stack)
+* [toString](#toString)
+* [Predefined errors](#predefined)
+* [Inheriting the previous error type](#inherit)
+* [Getting the value of the first occurrence of a field in the chain](#getFirstValue)
 
 ## Installation
 ```javascript
@@ -47,7 +52,7 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 ```
 
 <a name="cause" />
-## Extending an already existing error with a previous error
+## Extending with a previous error
 ```javascript
 var extendedError = new CFError({
     message: `extended error message`,
@@ -55,12 +60,14 @@ var extendedError = new CFError({
 });
 ```
 
+<a name="stack" />
 ## Printing the stack
 will print the stack of all previous errors too
 ```javascript
 console.log(extendedError.stack);
 ```
 
+<a name="toString" />
 ## toString()
 Will print the whole chain of errors in a nice way. </br>
 You can always override it if you want.
@@ -70,6 +77,7 @@ CFError.prototype.toString = function(){
 }
 ```
 
+<a name="predefined" />
 ## Predefined Error Types
 ```javascript
 var CFError    = require('cf-errors');
@@ -99,6 +107,7 @@ app.use(function(err, request, response, next){
 #### Node Errors
 All node.js core errors are also available using the Errors.Node object.
 
+<a name="inherit" />
 ## Inheriting the previous error type
 Creating an error with the same name as its cause can be achieved using 'Inherit' as the error name.
 ```javascript
@@ -115,6 +124,7 @@ var extendedError = new CFError({
     cause: error
 });
 
+<a name="getFirstValue" />
 ## Getting the value of the first occurrence of a field in the chain
 Sometimes you will populate an error with a field and wrap it with an additional error. Then in order to get the value of the field you will need to recursivelly go over the whole chain. </br>
 In order to get the first value of a field in the chain use 'getFirstValue' function
