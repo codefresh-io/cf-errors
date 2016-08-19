@@ -1,6 +1,6 @@
 {
   "name": "cf-errors",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Extensible error library",
   "main": "lib/index.js",
   "repository": {
