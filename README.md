@@ -19,6 +19,7 @@ Extensible error library
 * [Predefined errors](#predefined)
 * [Inheriting the previous error type](#inherit)
 * [Getting the value of the first occurrence of a field in the chain](#getfirstvalue)
+* [Running the tests](#tests)
 
 ## Installation
 ```javascript
@@ -136,6 +137,7 @@ extendedError.getFirstValue('field1') // "newValue"
 extendedError.getFirstValue('field2') // undefined
 ```
 
+<a name="tests" />
 ## Running the tests
 Just run 'npm test' or 'gulp unit_test'
 
