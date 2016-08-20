@@ -19,14 +19,14 @@ $ npm install cf-errors
 * [Running the tests](#tests)
 
 
-<a name="constructor" />
-###Creating an error
+
+##Creating an error
 ```javascript
 var CFError = require('cf-errors');
 var error   = new CFError("error message");
 ```
 
-####Extending the error
+###Extending the error
 ```javascript
 var error = new CFError({field: "value", message: `error message`});
 ```
