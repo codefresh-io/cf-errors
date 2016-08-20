@@ -48,6 +48,7 @@ var error = new CFError({field: "value", message: `error message`}, {field2: "va
 ```
 
 <a name="cause" />
+
 ##Extending with a previous error
 ```javascript
 var extendedError = new CFError({
@@ -57,6 +58,7 @@ var extendedError = new CFError({
 ```
 
 <a name="stack" />
+
 ##Printing the stack
 will print the stack of all previous errors too
 ```javascript
@@ -64,6 +66,7 @@ console.log(extendedError.stack);
 ```
 
 <a name="toString" />
+
 ##toString()
 Will print the whole chain of errors in a nice way. </br>
 You can always override it if you want.
@@ -74,6 +77,7 @@ CFError.prototype.toString = function(){
 ```
 
 <a name="predefined" />
+
 ##Predefined Error Types
 ```javascript
 var CFError    = require('cf-errors');
@@ -104,6 +108,7 @@ app.use(function(err, request, response, next){
 All node.js core errors are also available using the Errors.Node object.
 
 <a name="inherit" />
+
 ##Inheriting the previous error type
 Creating an error with the same name as its cause can be achieved using 'Inherit' as the error name.
 ```javascript
@@ -122,6 +127,7 @@ var extendedError = new CFError({
 ```
 
 <a name="getfirstvalue" />
+
 ##Getting the value of the first occurrence of a field in the chain
 Sometimes you will populate an error with a field and wrap it with an additional error. In order to get the value of the field you will need to recursively go over the whole chain. </br>
 In order to get the first value of a field in the chain use 'getFirstValue' function.
@@ -134,6 +140,7 @@ extendedError.getFirstValue('field2') // undefined
 ```
 
 <a name="tests" />
+
 ##Running the tests
 'npm test' or 'gulp unit_test'
 
