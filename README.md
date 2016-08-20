@@ -19,6 +19,7 @@ $ npm install cf-errors
 * [Running the tests](#tests)
 
 
+<a name="constructor" />
 
 ##Creating an error
 ```javascript
