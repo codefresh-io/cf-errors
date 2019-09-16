@@ -35,7 +35,8 @@
   },
   "homepage": "https://github.com/codefresh/cf-errors#readme",
   "scripts": {
-    "test": "gulp unit_test"
+    "test": "gulp unit_test",
+    "ci-publish": "ci-publish"
   },
   "author": "Codefresh",
   "license": "ISC"
