@@ -26,4 +26,4 @@ steps:
       DIR: './cf-errors'
     when:
       branch:
-        only: [ master ]
+        only: [ develop ]
