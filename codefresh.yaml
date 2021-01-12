@@ -1,0 +1,23 @@
+version: '1.0'
+steps:
+
+  install_dependencies:
+    title: 'Installing testing dependencies'
+    image: node:10.15.3
+    commands:
+        - yarn install --frozen-lockfile
+
+  unit_tests:
+    title: 'Running linting logic'
+    image: node:10.15.3
+    commands:
+        - yarn test
+
+  deploy_to_npm:
+    title: Publishing To Npm
+    image: codefresh/npm-publish:master
+    commands:
+      - NPM_TOKEN=${{NPM_TOKEN}} npm run ci-publish
+    when:
+      branch:
+        only: [ master ]
