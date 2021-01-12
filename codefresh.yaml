@@ -1,5 +1,11 @@
 version: '1.0'
 steps:
+  main_clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "codefresh-io/cf-errors"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
 
   install_dependencies:
     title: 'Installing testing dependencies'
@@ -8,7 +14,7 @@ steps:
         - yarn install --frozen-lockfile
 
   unit_tests:
-    title: 'Running linting logic'
+    title: 'Running unit tests'
     image: node:10.15.3
     commands:
         - yarn test
@@ -17,7 +23,7 @@ steps:
     type: npm-publish
     arguments:
       NPM_TOKEN: '${{NPM_TOKEN}}'
-      DIR: ./cf-errors
+      DIR: './cf-errors'
     when:
       branch:
         only: [ master ]
