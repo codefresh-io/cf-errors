@@ -14,10 +14,10 @@ steps:
         - yarn test
 
   deploy_to_npm:
-    title: Publishing To Npm
-    image: codefresh/npm-publish:master
-    commands:
-      - NPM_TOKEN=${{NPM_TOKEN}} npm run ci-publish
+    type: npm-publish
+    arguments:
+      NPM_TOKEN: '${{NPM_TOKEN}}'
+      DIR: ./cf-errors
     when:
       branch:
         only: [ master ]
