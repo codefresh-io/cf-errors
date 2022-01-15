@@ -26,7 +26,7 @@
     "isparta": "^4.0.0",
     "proxyquire": "^1.7.10",
     "run-sequence": "^1.1.0",
-    "shelljs": "^0.6.0",
+    "shelljs": "^0.8.5",
     "sinon-chai": "^2.8.0"
   },
   "bugs": {
