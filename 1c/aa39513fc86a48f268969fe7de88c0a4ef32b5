@@ -1,0 +1,14 @@
+lib/index.js
+  h_e5037b46dfdc11 5,10-22,55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "1caa39513fc86a48f268969fe7de88c0a4ef32b5",
+  "prompts": {},
+  "humans": {
+    "h_e5037b46dfdc11": {
+      "author": "Zhenya Tikhonov <zhenya.tikhonov@octopus.com>"
+    }
+  }
+}
