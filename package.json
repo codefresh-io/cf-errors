@@ -3,6 +3,9 @@
   "version": "0.1.17",
   "description": "Extensible error library",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codefresh/cf-errors.git"
@@ -20,6 +23,8 @@
   },
   "homepage": "https://github.com/codefresh/cf-errors#readme",
   "scripts": {
+    "build": "echo \"Skipping: no build required\"",
+    "lint": "echo \"Skipping: no linting configured\"",
     "test": "vitest run --coverage"
   },
   "author": "Codefresh",
