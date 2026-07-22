@@ -12,26 +12,15 @@
     "errors"
   ],
   "devDependencies": {
-    "chai": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-coveralls": "^0.1.4",
-    "gulp-env": "^0.2.0",
-    "gulp-istanbul": "^0.10.4",
-    "gulp-jshint": "^1.11.0",
-    "gulp-mocha-co": "^0.4.1-co.3",
-    "gulp-rimraf": "^0.1.1",
-    "isparta": "^4.0.0",
-    "proxyquire": "^1.7.10",
-    "run-sequence": "^1.1.0",
-    "shelljs": "^0.6.0",
-    "sinon-chai": "^2.8.0"
+    "@vitest/coverage-v8": "^4.1.10",
+    "vitest": "^4.1.10"
   },
   "bugs": {
     "url": "https://github.com/codefresh/cf-errors/issues"
   },
   "homepage": "https://github.com/codefresh/cf-errors#readme",
   "scripts": {
-    "test": "gulp unit_test"
+    "test": "vitest run --coverage"
   },
   "author": "Codefresh",
   "license": "ISC",
