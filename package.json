@@ -1,8 +1,11 @@
 {
   "name": "cf-errors",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Extensible error library",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codefresh/cf-errors.git"
@@ -11,31 +14,20 @@
     "error",
     "errors"
   ],
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-coveralls": "^0.1.4",
-    "gulp-env": "^0.2.0",
-    "gulp-istanbul": "^0.10.4",
-    "gulp-jshint": "^1.11.0",
-    "gulp-mocha-co": "^0.4.1-co.3",
-    "gulp-rimraf": "^0.1.1",
-    "isparta": "^4.0.0",
-    "proxyquire": "^1.7.10",
-    "run-sequence": "^1.1.0",
-    "shelljs": "^0.6.0",
-    "sinon-chai": "^2.8.0"
+    "@vitest/coverage-v8": "^4.1.10",
+    "vitest": "^4.1.10"
   },
   "bugs": {
     "url": "https://github.com/codefresh/cf-errors/issues"
   },
   "homepage": "https://github.com/codefresh/cf-errors#readme",
   "scripts": {
-    "test": "gulp unit_test"
+    "build": "echo \"Skipping: no build required\"",
+    "lint": "echo \"Skipping: no linting configured\"",
+    "test": "vitest run --coverage"
   },
   "author": "Codefresh",
-  "license": "ISC"
+  "license": "ISC",
+  "packageManager": "yarn@4.10.3+sha512.c38cafb5c7bb273f3926d04e55e1d8c9dfa7d9c3ea1f36a4868fa028b9e5f72298f0b7f401ad5eb921749eb012eb1c3bb74bf7503df3ee43fd600d14a018266f"
 }
